@@ -1,3 +1,5 @@
+import { AppState } from "../AppState.js";
+import { Profile } from "../models/Profile.js";
 import { api } from "./AxiosService.js"
 
 
@@ -5,10 +7,10 @@ import { api } from "./AxiosService.js"
 
 
 class ProfilesService {
-  getProfile(profileId) {
-    const response = api.get(`api/profiles/:${profileId}`)
+  async getProfile(profileId) {
+    const response = await api.get(`api/profiles/${profileId}`)
     console.log('profile we got', response.data);
-
+    AppState.activeProfile = new Profile(response.data)
   }
 
 }

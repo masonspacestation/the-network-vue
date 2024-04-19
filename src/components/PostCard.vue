@@ -1,19 +1,26 @@
 <script setup>
+import { computed } from "vue";
 import { Post } from "../models/Post.js";
+import { AppState } from "../AppState.js";
 
 defineProps({ post: Post })
+
 </script>
 
 
+
+
+
 <template>
+
+
+
   <div class="card p-3 mb-3">
     <div class="row">
       <div class="col-12">
         <RouterLink :to="{ name: 'Profile', params: { profileId: post.creatorId } }" class="profile-link">
           <img class="post-profile-pic mb-2" :src="post.creator.picture" alt="">
-          <h3 class="fw-medium fs-4">
-            {{ post.creator.name }}
-          </h3>
+          <h3 class="fw-medium fs-4">{{ post.creator.name }}</h3>
         </RouterLink>
       </div>
     </div>
