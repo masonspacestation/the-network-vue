@@ -4,9 +4,10 @@ import { postsService } from "../services/PostsService.js";
 import Pop from "../utils/Pop.js";
 import { AppState } from "../AppState.js";
 import { artsService } from "../services/ArtsService.js";
+import Feed from "../components/Feed.vue";
 
 
-const posts = computed(() => AppState.posts)
+
 
 onMounted(() => {
   getPosts()
@@ -36,11 +37,7 @@ async function getPosts() {
 <template>
   <div class="container">
     <section class="row justify-content-center mt-3">
-      <div class="col-6">
-        <div v-for="post in posts" :key="post.id" class="col-12">
-          <PostCard :post="post" />
-        </div>
-      </div>
+      <Feed />
     </section>
   </div>
 
