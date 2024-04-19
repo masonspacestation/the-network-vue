@@ -7,15 +7,13 @@ const posts = computed(() => AppState.posts)
 
 
 <template>
-  <div class="container">
-    <section class="row justify-content-center mt-3">
-      <div class="col-6">
-        <div v-for="post in posts" :key="post.id" class="col-12">
-          <PostCard :post="post" />
-        </div>
-      </div>
-    </section>
-  </div>
+
+  <section class="row">
+    <div v-for="post in posts" :key="post.id" class="col-12">
+      <PostCard :post="post" />
+    </div>
+  </section>
+
 </template>
 
 

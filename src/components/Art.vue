@@ -1,12 +1,21 @@
 <script setup>
+import { computed } from "vue";
+import { AppState } from "../AppState.js";
+import { Art } from "../models/Art.js";
 
-
+const arts = computed(() => AppState.arts)
 
 </script>
 
 
 <template>
-  <h1>hi</h1>
+
+
+  <div v-for="art in arts" :key="art.id" class="col-12">
+    <ArtCard :art="art" />
+  </div>
+
+
 </template>
 
 

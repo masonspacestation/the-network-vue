@@ -5,7 +5,8 @@ import Pop from "../utils/Pop.js";
 import { AppState } from "../AppState.js";
 import { artsService } from "../services/ArtsService.js";
 import Feed from "../components/Feed.vue";
-
+import Art from "../components/Art.vue";
+import ProfilePage from "./ProfilePage.vue";
 
 
 
@@ -36,9 +37,21 @@ async function getPosts() {
 
 <template>
   <div class="container">
-    <section class="row justify-content-center mt-3">
-      <Feed />
+    <section class="row mt-3">
+      <div class="col-3">
+        <!-- user -->
+      </div>
+      <!-- <div class="col-6">
+        <Feed />
+      </div> -->
+      <div class="col-6">
+        <ProfilePage />
+      </div>
+      <div class="col-3">
+        <Art />
+      </div>
     </section>
+
   </div>
 
 

@@ -27,13 +27,14 @@ async function getProfile() {
 
 
 <template>
-  <div v-if="profile" class="container">
-    <div class="row">
-      <h1>
-        Profile Page
-      </h1>
-    </div>
+
+  <div v-if="profile" class="row">
+
+    <h1>
+      Profile Page
+    </h1>
   </div>
+
 </template>
 
 
