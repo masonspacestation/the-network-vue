@@ -6,9 +6,7 @@ import { AppState } from "../AppState.js";
 import { artsService } from "../services/ArtsService.js";
 import Feed from "../components/Feed.vue";
 import Art from "../components/Art.vue";
-import ProfilePage from "./ProfilePage.vue";
 import { useRoute } from "vue-router";
-import { profilesService } from "../services/ProfilesService.js";
 
 const route = useRoute()
 

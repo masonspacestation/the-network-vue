@@ -36,6 +36,11 @@ async function logout() {
                   Manage Account
                 </div>
               </router-link>
+              <RouterLink v-if="account" :to="{ name: 'Profile', params: { profileId: account.id } }">
+                <div class="list-group-item dropdown-item list-group-item-action">
+                  Your Profile
+                </div>
+              </RouterLink>
               <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
                 <i class="mdi mdi-logout"></i>
                 logout
@@ -45,6 +50,9 @@ async function logout() {
         </div>
       </div>
     </span>
+    <div v-if="account" class="mt-3">
+      <h5>{{ account.name }}</h5>
+    </div>
   </section>
 </template>
 
