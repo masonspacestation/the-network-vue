@@ -7,13 +7,29 @@ import { artsService } from "../services/ArtsService.js";
 import Feed from "../components/Feed.vue";
 import Art from "../components/Art.vue";
 import ProfilePage from "./ProfilePage.vue";
+import { useRoute } from "vue-router";
+import { profilesService } from "../services/ProfilesService.js";
 
+const route = useRoute()
 
+const posts = computed(() => AppState.posts)
 
 onMounted(() => {
   getPosts()
   getArt()
+  // getProfile()
 })
+
+
+
+// async function getProfile() {
+//   try {
+//     await profilesService.getProfile(route.params.profileId)
+//   }
+//   catch (error) {
+//     Pop.toast('Could not get profile', 'error');
+//   }
+// }
 
 async function getArt() {
   try {
@@ -36,15 +52,20 @@ async function getPosts() {
 </script>
 
 <template>
-  <div class="container">
+  <!-- <div class="container">
     <section class="row mt-3">
       <div class="col-3">
-        <!-- user -->
-      </div>
-      <!-- <div class="col-6">
-        <Feed />
+        user
       </div> -->
-      <div class="col-6">
+
+  <!-- <Feed /> -->
+  <section class="row">
+    <div v-for="post in posts" :key="post.id" class="col-12">
+      <PostCard :post="post" />
+    </div>
+  </section>
+
+  <!-- <div class="col-6">
         <ProfilePage />
       </div>
       <div class="col-3">
@@ -52,7 +73,7 @@ async function getPosts() {
       </div>
     </section>
 
-  </div>
+  </div> -->
 
 
 
