@@ -7,6 +7,14 @@ import { api } from "./AxiosService.js"
 
 
 class PostsService {
+  async getProfilePosts(profileId) {
+    AppState.profilePosts = []
+    const response = await api.get(`api/posts?creatorId=${profileId}`)
+    console.log('profile posts', response.data);
+    const posts = response.data.posts.map(post => new Post(post))
+    AppState.profilePosts = posts
+
+  }
   async getPosts() {
     console.log('getting posts');
     const response = await api.get('api/posts')

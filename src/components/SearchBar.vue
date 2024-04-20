@@ -37,7 +37,7 @@ async function searchProfiles() {
     <div class="input-group">
       <input v-model="searchQuery" type="text" class="form-control" placeholder="search for anybody..."
         id="search-input">
-      <button class="btn btn-info w-25">search <i class="mdi mdi-magnify"></i></button>
+      <button class="btn btn-info w-25"><i class="mdi mdi-magnify"></i></button>
     </div>
   </form>
   <div class="mt-1" v-if="searchTerm">

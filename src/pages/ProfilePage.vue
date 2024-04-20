@@ -6,6 +6,7 @@ import { computed, onMounted } from "vue";
 import { AppState } from "../AppState.js";
 import { Modal } from "bootstrap";
 import AccountForm from "../components/AccountForm.vue";
+import { postsService } from "../services/PostsService.js";
 
 const route = useRoute()
 
@@ -15,7 +16,9 @@ const posts = computed(() => AppState.profilePosts)
 
 onMounted(() => {
   getProfile()
+  getProfilePosts()
 })
+
 
 async function getProfile() {
   try {
@@ -25,36 +28,59 @@ async function getProfile() {
     Pop.toast('Could not get profile', 'error');
   }
 }
-function openProfileEditor() {
 
+async function getProfilePosts() {
+  try {
+    await postsService.getProfilePosts(route.params.profileId)
+  }
+  catch (error) {
+    Pop.toast('Could not get posts for profile', 'error');
+  }
 }
 </script>
 
 
 <template>
   <section v-if="profile" class="card rounded rounded 2">
-    <div class="card rounded rounded 2">
 
-      <img :src="profile.coverImg" alt="" class="cover-img rounded-top">
-      <div class="row mt-3">
 
-        <div class="col-2 text-center">
-          <img :src="profile.picture" alt="" class="profile-picture">
-        </div>
-        <div class="col-10">
-          <p>{{ profile.bio }}</p>
+    <img :src="profile.coverImg" alt="" class="cover-img rounded-top">
+    <div class="row mt-2 px-4 align-items-center">
 
-        </div>
+      <div class="col-2 text-center">
+        <img :src="profile.picture" alt="" class="profile-picture">
+      </div>
+      <div class="col-10">
+        <h4>{{ profile.name }}</h4>
+      </div>
+    </div>
+    <div class="row p-4">
+
+      <hr>
+
+      <div class="col-2">
+      </div>
+
+      <div class="col-10">
+        <p>{{ profile.bio }}</p>
       </div>
     </div>
 
+
     <div class="row">
       <div class="col-12 text-end">
-        <button @click="openProfileEditor()" class="btn btn-primary w-50 float-end me-3" data-bs-toggle="modal"
+        <button class="btn btn-outline-secondary opacity-50 w-auto me-3 mb-3" data-bs-toggle="modal"
           data-bs-target="#staticBackdrop" data-bs-dismiss="modal"><i class="mdi mdi-pencil"></i></button>
       </div>
     </div>
   </section>
+
+  <section class="row">
+    <div v-for="post in posts" :key="post.id" class="col-12">
+      <PostCard :post="post" />
+    </div>
+  </section>
+
   <AccountForm />
 </template>
 

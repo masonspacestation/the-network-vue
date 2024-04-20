@@ -8,8 +8,8 @@ class AccountService {
 
   async getAccount() {
     try {
-      const res = await api.get('/account')
-      AppState.account = new Account(res.data)
+      const response = await api.get('/account')
+      AppState.account = new Account(response.data)
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
@@ -20,6 +20,7 @@ class AccountService {
     const response = await api.put('/account', accountData)
     console.log('Updated account', response.data);
     AppState.account = new Account(response.data)
+
   }
 
 
