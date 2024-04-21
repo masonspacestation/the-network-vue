@@ -7,8 +7,11 @@ import { api } from "./AxiosService.js"
 
 
 class PostsService {
-  async deletePost(postId) {
-    const response = await api.delete(`/api/posts/${postId}/like`)
+  getProfiles() {
+    throw new Error("Method not implemented.");
+  }
+  async destroyPost(postId) {
+    const response = await api.delete(`/api/posts/${postId}`)
     console.log('deleting post', postId);
 
     const posts = AppState.posts
@@ -21,6 +24,11 @@ class PostsService {
   async likePost(postId) {
     const response = await api.post(`/api/posts/${postId}/like`)
     console.log('💙 liking post', response.data);
+    const posts = response.data.posts.map(post => new Post(post))
+    AppState.posts = posts
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.totalPages
+
   }
   async changePage(pageNumber) {
     const response = await api.get(`api/posts?page=${pageNumber}`)

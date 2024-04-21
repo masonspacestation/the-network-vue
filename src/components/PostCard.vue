@@ -4,8 +4,10 @@ import { Post } from "../models/Post.js";
 import { AppState } from "../AppState.js";
 import { postsService } from "../services/PostsService.js";
 import Pop from "../utils/Pop.js";
+import App from "../App.vue";
 
 defineProps({ post: Post })
+const account = computed(() => AppState.account)
 
 
 
@@ -19,9 +21,12 @@ async function likePost(postId) {
 }
 
 
-async function deletePost(postId) {
+async function destroyPost(postId) {
   try {
-    await postsService.deletePost(postId)
+    const wantsToDestroy = await Pop.confirm('Are you sure you want to deprive the world of these words of wisdom?')
+    if (!wantsToDestroy) return
+
+    await postsService.destroyPost(postId)
   }
   catch (error) {
     Pop.toast('Could not delete post.', 'error');
@@ -54,8 +59,8 @@ async function deletePost(postId) {
             <h3 class="mb-1 fs-5 fw-bold text-secondary">{{ post.creator.name }}</h3>
             <small class="text-secondary disabled">{{ post.createdAt.toLocaleString() }}</small>
           </div>
-          <div v-if="post.creatorId == AppState.account.id" class="col-1 p-0">
-            <button @click="deletePost(post.id)"
+          <div v-if="post.creatorId == account?.id" class="col-1 p-0">
+            <button @click="destroyPost(post.id)"
               class="btn btn-link text-start  text-decoration-none text-secondary opacity-50 my-auto"><i
                 class="mdi mdi-delete-outline"></i></button>
           </div>
@@ -73,15 +78,28 @@ async function deletePost(postId) {
         <img class="post-img" :src="post.imgUrl" alt="">
       </div> -->
     <div class="row justify-content-end">
-      <button @click="likePost(post.id)">
+
+
+
+
+
+      <!-- <button @click="likePost(post.id)">
+        <div v-if="post.likeIds.includes(AppState.account.id)">
+
+        <i class="mdi mdi-heart btn btn-link text-start  text-decoration-none text-secondary opacity-50 my-auto"></i>
+        </div>
+        <div v-else>
         <i
-          class="mdi mdi-heart-outline btn btn-link text-start  text-decoration-none text-secondary opacity-50 my-auto"></i></button>
-      <span class="text-end">
-        {{ post.likes.length }}
-      </span>
+          class="mdi mdi-heart-outline btn btn-link text-start  text-decoration-none text-secondary opacity-50 my-auto"></i>
+        </div>
 
+      </button> -->
 
-      <p class="text-end"> <i @click="likePost(post.id)" class="mdi mdi-heart-outline"></i>
+      <p class="text-end">
+        <i v-if="post.likeIds.includes(AppState.account?.id)" @click="likePost(post.id)"
+          class="mdi mdi-heart btn btn-link text-start  text-decoration-none text-secondary opacity-50 my-auto"></i>
+        <i v-else @click="likePost(post.id)"
+          class="mdi mdi-heart-outline btn btn-link text-start  text-decoration-none text-secondary opacity-50 my-auto"></i>
         {{ post.likes.length }}
       </p>
     </div>

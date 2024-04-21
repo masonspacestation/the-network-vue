@@ -31,5 +31,8 @@ export const AppState = reactive({
   totalPages: Infinity,
 
   /** */
-  searchTerm: ''
+  searchTerm: '',
+
+  /**@type {Boolean} */
+  posting: true
 })

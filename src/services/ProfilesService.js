@@ -10,8 +10,26 @@ class ProfilesService {
   clearSearch() {
     throw new Error("Method not implemented.");
   }
-  searchProfiles(value) {
-    throw new Error("Method not implemented.");
+
+  async getProfiles(searchQuery) {
+    const response = await api.get(`/api/profiles`)
+    console.log('found profiles', searchQuery);
+    const profiles = response.data.map(profile => new Profile(profile))
+    AppState.searchTerm = searchQuery
+    AppState.profiles = profiles
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.totalPages
+  }
+
+
+  async searchProfiles(searchQuery) {
+    const response = await api.get(`/api/profiles?query=${searchQuery}`)
+    console.log('found profile', searchQuery);
+    const profiles = response.data.map(profile => new Profile(profile))
+    AppState.searchTerm = searchQuery
+    AppState.profiles = profiles
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.totalPages
   }
   async getProfile(profileId) {
     AppState.activeProfile = null

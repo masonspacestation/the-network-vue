@@ -9,6 +9,7 @@ import { computed } from "vue";
 import Login from "./components/Login.vue";
 import { postsService } from "./services/PostsService.js";
 import Pop from "./utils/Pop.js";
+import NewPostForm from "./components/NewPostForm.vue";
 
 const arts = computed(() => AppState.arts)
 const totalPages = computed(() => AppState.totalPages)
@@ -57,9 +58,10 @@ async function changePage(pageNumber) {
                       class="mdi mdi-arrow-right"></i>Next</button>
                 </div>
               </div>
+
+
+
               <div class="row">
-
-
                 <router-view />
                 <!-- <HomePage /> -->
               </div>

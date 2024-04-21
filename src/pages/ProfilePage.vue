@@ -74,7 +74,7 @@ async function getProfilePosts() {
     </div>
 
 
-    <div class="row">
+    <div v-if="profile.id == account.id" class="row">
       <div class="col-12 text-end">
         <button class="btn btn-outline-secondary opacity-50 w-auto me-3 mb-3" data-bs-toggle="modal"
           data-bs-target="#staticBackdrop" data-bs-dismiss="modal"><i class="mdi mdi-pencil"></i></button>
