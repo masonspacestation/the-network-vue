@@ -7,8 +7,22 @@ import HomePage from "./pages/HomePage.vue";
 import Art from "./components/Art.vue";
 import { computed } from "vue";
 import Login from "./components/Login.vue";
+import { postsService } from "./services/PostsService.js";
+import Pop from "./utils/Pop.js";
 
 const arts = computed(() => AppState.arts)
+const totalPages = computed(() => AppState.totalPages)
+
+
+async function changePage(pageNumber) {
+  try {
+    await postsService.changePage(pageNumber)
+  }
+  catch (error) {
+    Pop.toast('Could not change page through posts', 'error');
+  }
+}
+
 </script>
 
 <template>
@@ -28,8 +42,27 @@ const arts = computed(() => AppState.arts)
           <div class="row p-3">
 
             <div class="col-9">
-              <router-view />
-              <!-- <HomePage /> -->
+
+              <div class="row my-2">
+                <div class="col 4  text-center">
+                  <button :disabled="AppState.currentPage == 1" @click="changePage(AppState.currentPage - 1)"
+                    class="btn-primary-outline w-50 text-center"><i class="mdi mdi-arrow-left"></i>Prev</button>
+                </div>
+                <div class="col 4  text-center">
+                  <h6>Page {{ AppState.currentPage }} of {{ AppState.totalPages }}</h6>
+                </div>
+                <div class="col 4  text-center">
+                  <button :disabled="AppState.currentPage == AppState.totalPages"
+                    @click="changePage(AppState.currentPage + 1)" class="btn-primary-outline w-50 text-center"><i
+                      class="mdi mdi-arrow-right"></i>Next</button>
+                </div>
+              </div>
+              <div class="row">
+
+
+                <router-view />
+                <!-- <HomePage /> -->
+              </div>
             </div>
             <div class="col-3">
               <div v-for="art in arts" :key="art.id" class="col-12">

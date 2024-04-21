@@ -7,17 +7,24 @@ import { AppState } from "../AppState.js";
 import { Modal } from "bootstrap";
 import AccountForm from "../components/AccountForm.vue";
 import { postsService } from "../services/PostsService.js";
+import NewPostForm from "../components/NewPostForm.vue";
 
 const route = useRoute()
 
 const profile = computed(() => AppState.activeProfile)
+const account = computed(() => AppState.account)
 
 const posts = computed(() => AppState.profilePosts)
 
 onMounted(() => {
   getProfile()
   getProfilePosts()
+  scrollToTop()
 })
+
+function scrollToTop() {
+  window.scrollTo(0, 0);
+}
 
 
 async function getProfile() {
@@ -74,6 +81,10 @@ async function getProfilePosts() {
       </div>
     </div>
   </section>
+
+  <div v-if="route.params.profileId == account?.id">
+    <NewPostForm />
+  </div>
 
   <section class="row">
     <div v-for="post in posts" :key="post.id" class="col-12">

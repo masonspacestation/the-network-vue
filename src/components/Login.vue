@@ -5,6 +5,8 @@ import { AuthService } from '../services/AuthService'
 import { profilesService } from "../services/ProfilesService.js"
 import { postsService } from "../services/PostsService.js"
 import { useRoute } from "vue-router"
+import Pop from "../utils/Pop.js"
+import { Account } from "../models/Account.js"
 
 const user = computed(() => AppState.user)
 const account = computed(() => AppState.account)
@@ -15,6 +17,27 @@ async function login() {
 }
 async function logout() {
   AuthService.logout({ returnTo: window.location.origin })
+}
+
+// async function getMyProfile() {
+//   try {
+//     await profilesService.getProfile(account);
+//     await postsService.getProfilePosts(account)
+//   }
+//   catch (error) {
+//     Pop.toast('Could not get your profile.', 'error');
+//   }
+// }
+
+
+async function getProfile(user) {
+  console.log('user', user);
+  try {
+    await profilesService.getMyProfile(user)
+  }
+  catch (error) {
+    Pop.toast('Could not get profile', 'error');
+  }
 }
 
 </script>
@@ -42,10 +65,13 @@ async function logout() {
                 </div>
               </router-link>
               <RouterLink v-if="account" :to="{ name: 'Profile', params: { profileId: account.id } }">
-                <div class="list-group-item dropdown-item list-group-item-action"
-                  @click="profilesService.getProfile(route.params.profileId); postsService.getProfilePosts(route.params.profileId)">
+                <div @click="getProfile(user)" class="list-group-item dropdown-item list-group-item-action">
                   Your Profile
                 </div>
+                <!-- NOTE the code above only does anything if we are not already looking at someone else's profile, like if we're on the home page. The code below works from the homepage, and will work from someone else's profile, but only the second time it's clicked. The first time, it has no effect.
+                  <div class="list-group-item dropdown-item list-group-item-action" @click="getMyProfile()">
+                  Your Profile
+                </div> -->
               </RouterLink>
               <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
                 <i class="mdi mdi-logout"></i>

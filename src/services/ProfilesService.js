@@ -20,6 +20,19 @@ class ProfilesService {
     AppState.activeProfile = new Profile(response.data)
   }
 
+
+  async getMyProfile(accountId) {
+    AppState.activeProfile = null
+    const profile = AppState.profiles.find((profile) => profile.id == accountId)
+    const profileId = profile.id
+
+    console.log('profileid', profileId);
+    // const response = await api.get(`api/profiles/${profileId}`)
+    // console.log('profile we got', response.data);
+    // AppState.activeProfile = new Profile(response.data)
+    await this.getProfile(profileId)
+  }
+
 }
 
 

@@ -24,6 +24,7 @@ function toggleTheme() {
 
       <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
         <div class="">
+          <i class="mdi mdi-home"></i>
           <!-- <img src="src/assets/img/cw-logo.png" alt=""> -->
         </div>
       </router-link>
