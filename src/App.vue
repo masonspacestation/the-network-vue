@@ -43,21 +43,47 @@ async function changePage(pageNumber) {
           <div class="row p-3">
 
             <div class="col-9">
-
-              <div v-if="AppState?.totalPages > 1" class="row my-2">
-                <div class="col 4  text-center">
-                  <button :disabled="AppState.currentPage == 1" @click="changePage(AppState.currentPage - 1)"
-                    class="btn btn-secondary-outline w-50 text-center"><i class="mdi mdi-arrow-left"></i>Prev</button>
-                </div>
-                <div class="col 4  text-center">
-                  <h6>Page {{ AppState.currentPage }} of {{ AppState.totalPages }}</h6>
-                </div>
-                <div class="col 4  text-center">
-                  <button :disabled="AppState.currentPage == AppState.totalPages"
-                    @click="changePage(AppState.currentPage + 1)" class="btn btn-secondary-outline w-50 text-center"><i
-                      class="mdi mdi-arrow-right"></i>Next</button>
+              <!-- SECTION post navigation -->
+              <div v-if="!AppState?.searchTerm">
+                <div v-if="AppState?.totalPages > 1" class="row my-2">
+                  <div class="col 4  text-center">
+                    <button :disabled="AppState.currentPage == 1" @click="changePage(AppState.currentPage - 1)"
+                      class="btn btn-secondary-outline w-50 text-center"><i class="mdi mdi-arrow-left"></i>Prev</button>
+                  </div>
+                  <div class="col 4  text-center">
+                    <h6>Page {{ AppState.currentPage }} of {{ AppState.totalPages }}</h6>
+                  </div>
+                  <div class="col 4  text-center">
+                    <button :disabled="AppState.currentPage == AppState.totalPages"
+                      @click="changePage(AppState.currentPage + 1)"
+                      class="btn btn-secondary-outline w-50 text-center"><i
+                        class="mdi mdi-arrow-right"></i>Next</button>
+                  </div>
                 </div>
               </div>
+
+
+              <!-- SECTION search navigation -->
+              <div v-else>
+                <div v-if="AppState?.totalPages > 1" class="row my-2">
+                  <div class="col 4  text-center">
+                    <button :disabled="AppState.currentPage == 1" @click="changePage(AppState.currentPage - 1)"
+                      class="btn btn-secondary-outline w-50 text-center"><i class="mdi mdi-arrow-left"></i>Prev</button>
+                  </div>
+                  <div class="col 4  text-center">
+                    <h6>Page {{ AppState.currentPage }} of {{ AppState.totalPages }}</h6>
+                  </div>
+                  <div class="col 4  text-center">
+                    <button :disabled="AppState.currentPage == AppState.totalPages"
+                      @click="changePage(AppState.currentPage + 1)"
+                      class="btn btn-secondary-outline w-50 text-center"><i
+                        class="mdi mdi-arrow-right"></i>Next</button>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- SECTION profile post navigation -->
 
 
 

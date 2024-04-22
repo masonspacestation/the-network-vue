@@ -1,15 +1,17 @@
+/* eslint-disable no-console */
+import { computed } from "vue";
 import { AppState } from "../AppState.js";
 import { Profile } from "../models/Profile.js";
 import { api } from "./AxiosService.js"
 
 
-
+const searchTerm = computed(() => AppState.searchTerm)
 
 
 class ProfilesService {
   async clearSearch() {
     AppState.searchTerm = ''
-    await this.getProfiles()
+    // await this.getProfiles()
   }
 
   async getProfiles(searchQuery) {
@@ -37,6 +39,8 @@ class ProfilesService {
     const response = await api.get(`api/profiles/${profileId}`)
     console.log('profile we got', response.data);
     AppState.activeProfile = new Profile(response.data)
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.totalPages
   }
 
 

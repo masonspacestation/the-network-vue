@@ -4,14 +4,13 @@ import { profilesService } from "../services/ProfilesService.js";
 import Pop from "../utils/Pop.js";
 import { computed, onMounted } from "vue";
 import { AppState } from "../AppState.js";
-import { Modal } from "bootstrap";
 import AccountForm from "../components/AccountForm.vue";
 import { postsService } from "../services/PostsService.js";
 import NewPostForm from "../components/NewPostForm.vue";
 
 const route = useRoute()
 
-const user = computed(() => AppState.user)
+
 const profile = computed(() => AppState.activeProfile)
 const account = computed(() => AppState.account)
 
@@ -50,6 +49,7 @@ async function getProfilePosts() {
 
 <template>
   <div class="container">
+
     <div class="row">
 
       <section v-if="profile" class="card rounded rounded 2 px-0 mb-4">

@@ -1,6 +1,6 @@
 <!-- eslint-disable no-console -->
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 import { AppState } from "../AppState.js";
 import { accountService } from "../services/AccountService.js";
 import Pop from "../utils/Pop.js";
@@ -22,7 +22,7 @@ const accountData = ref({
   graduated: Boolean
 })
 
-onMounted(() => {
+watchEffect(() => {
   accountData.value = { ...AppState.account }
 })
 

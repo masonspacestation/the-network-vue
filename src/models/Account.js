@@ -24,16 +24,5 @@ export class Account {
     } else {
       return ``
     }
-
-  }
-
-
-}
-
-function gradStatus(status) {
-  if (this.graduated == false) {
-    return '<i class="mdi mdi-account-school"></i>'
-  } else {
-    return
   }
 }

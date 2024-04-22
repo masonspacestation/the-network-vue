@@ -12,7 +12,7 @@ const account = computed(() => AppState.account)
 </script>
 
 <template>
-  <section v-if="profile" class="card rounded rounded 2">
+  <section v-if="profile" class="card rounded rounded 2 mb-3">
 
 
     <img :src="profile.coverImg" alt="" class="cover-img rounded-top">

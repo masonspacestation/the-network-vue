@@ -11,11 +11,11 @@ class PostsService {
     throw new Error("Method not implemented.");
   }
   async destroyPost(postId) {
+    const posts = AppState.posts
+    const postIndex = posts.findIndex(post => post.id == postId)
     const response = await api.delete(`/api/posts/${postId}`)
     console.log('deleting post', postId);
 
-    const posts = AppState.posts
-    const postIndex = posts.findIndex(post => post.id == postId)
 
     if (postIndex == -1) throw new Error('findIndex needs adjusted')
 
@@ -24,10 +24,15 @@ class PostsService {
   async likePost(postId) {
     const response = await api.post(`/api/posts/${postId}/like`)
     console.log('💙 liking post', response.data);
-    const posts = response.data.posts.map(post => new Post(post))
-    AppState.posts = posts
-    AppState.currentPage = response.data.page
-    AppState.totalPages = response.data.totalPages
+    // const posts = response.data.posts.map(post => new Post(post))
+    // AppState.posts = posts
+    // AppState.currentPage = response.data.page
+    // AppState.totalPages = response.data.totalPages
+
+    this.getPosts()
+    // const account = AppState.account
+    // const likedPost = AppState.posts.find(post => post.id == postId)
+    // likedPost.likeIds += account.id
 
   }
   async changePage(pageNumber) {
