@@ -18,31 +18,37 @@ async function searchProfiles() {
   catch (error) {
     Pop.toast('Could not find profiles', 'error');
   }
+}
 
 
-  async function clearSearch() {
-    try {
-      await profilesService.clearSearch()
-    }
-    catch (error) {
-      Pop.toast('Could not clear search', 'error');
-    }
+async function clearSearch() {
+  try {
+    await profilesService.clearSearch()
+  }
+  catch (error) {
+    Pop.toast('Could not clear search', 'error');
   }
 }
+
 </script>
 
 
 <template>
-  <form @submit.prevent="searchProfiles()">
-    <div class="input-group">
-      <input v-model="searchQuery" type="text" class="form-control" placeholder="search for anybody..."
-        id="search-input">
-      <button class="btn btn-info w-25"><i class="mdi mdi-magnify"></i></button>
+  <div class="col-6">
+
+    <form @submit.prevent="searchProfiles()">
+      <div class="input-group">
+        <input v-model="searchQuery" type="text" class="form-control" placeholder="search for anybody..."
+          id="search-input">
+        <button class="btn btn-info w-25"><i class="mdi mdi-magnify"></i></button>
+      </div>
+    </form>
+    <div class="mt-1" v-if="searchTerm">
+      <div @click="clearSearch()" role="button" class="btn btn-outline-info rounded-pill" title="clear search results">
+        {{ searchTerm }} <i class="mdi mdi-close"></i>
+      </div>
     </div>
-  </form>
-  <div class="mt-1" v-if="searchTerm">
-    <div @click="clearSearch()" role="button" class="btn btn-outline-info rounded-pill" title="clear search results">{{
-      searchTerm }} <i class="mdi mdi-close"></i> </div>
+
   </div>
 </template>
 

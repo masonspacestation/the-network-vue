@@ -15,7 +15,11 @@ const accountData = ref({
   picture: '',
   coverImg: '',
   bio: '',
-  linkedin: ''
+  linkedin: '',
+  github: '',
+  resume: '',
+  class: '',
+  graduated: Boolean
 })
 
 onMounted(() => {
@@ -46,7 +50,7 @@ async function saveAccount() {
     <div class="modal-dialog modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Write New Post</h1>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Profile Details</h1>
           <button type="button" class="btn bg-none text-secondary opacity-50" data-bs-dismiss="modal"
             aria-label="Close and discard changes">Cancel</button>
         </div>
@@ -58,31 +62,72 @@ async function saveAccount() {
               <div class="row">
                 <div class="col-4 mb-3">
                   <label for="account-name">Name</label>
-                  <input v-model="accountData.name" class="form-control" type="text" id="account-name" required
-                    maxlength="100">
+                  <input placeholder="Name . . ." v-model="accountData.name" class="form-control" type="text"
+                    id="account-name" required maxlength="100">
                 </div>
+
                 <div class="mb-3 col-4">
-                  <label for="account-picture">Picture</label>
-                  <input v-model="accountData.picture" class="form-control" type="url" id="account-picture" required
-                    maxlength="500">
+                  <label for="account-picture">Profile Picture</label>
+                  <input placeholder="Image url . . ." v-model="accountData.picture" class="form-control" type="url"
+                    id="account-picture" maxlength="500">
                 </div>
+
                 <div class="mb-3 col-4">
                   <label for="account-cover-image">Cover Image</label>
-                  <input v-model="accountData.coverImg" class="form-control" type="url" id="account-cover-image"
-                    required maxlength="500">
+                  <input placeholder="Image url . . ." v-model="accountData.coverImg" class="form-control" type="url"
+                    id="account-cover-image" maxlength="500">
                 </div>
 
                 <div class="mb-3 col-12">
                   <label for="account-bio">Bio</label>
-                  <textarea v-model="accountData.bio" name="account-bio" id="account-bio" rows="5"
-                    class="form-control"></textarea>
+                  <textarea placeholder="Tell us about yourself. . ." v-model="accountData.bio" name="account-bio"
+                    id="account-bio" rows="5" class="form-control"></textarea>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="mb-3 col-4">
+                  <label for="account-linkedin-link">Linkedin</label>
+                  <input placeholder="url . . ." v-model="accountData.linkedin" class="form-control" type="url"
+                    id="account-linkedin-link" maxlength="500">
                 </div>
 
-                <div class="mb-3 col-6">
-                  <label for="account-linkedin-link">Linkedin</label>
-                  <input v-model="accountData.linkedin" class="form-control" type="url" id="account-linkedin-link"
-                    maxlength="500">
+                <div class="mb-3 col-4">
+                  <label for="account-github-link">Github</label>
+                  <input placeholder="url . . ." v-model="accountData.github" class="form-control" type="url"
+                    id="account-github-link" maxlength="500">
                 </div>
+
+                <div class="mb-3 col-4">
+                  <label for="account-resume-link">Resume</label>
+                  <input placeholder="url . . ." v-model="accountData.resume" class="form-control" type="url"
+                    id="account-resume-link" maxlength="500">
+                </div>
+
+              </div>
+              <div class="row align-items-center">
+
+                <div class="col-4 mb-3">
+                  <label for="attending-class">Attending Class</label>
+                  <input placeholder="ie: Spring 2024" v-model="accountData.class" class="form-control" type="text"
+                    id="attending-class" maxlength="100">
+                </div>
+
+                <div class="col-auto">
+                  <div class="form-check">
+                    <input v-model="accountData.graduated" class="form-check-input" type="checkbox"
+                      id="autoSizingCheck">
+                    <label class="form-check-label" for="autoSizingCheck">
+                      Graduated
+                    </label>
+                  </div>
+                  <!-- 
+                  <label for="graduated">Graduated?</label>
+                  <input v-model="accountData.graduated" class="form-control" type="checkbox" id="graduated"> -->
+                </div>
+
+
+
 
                 <div class="modal-footer mb-3 col-12 d-flex align-items-end justify-content-end">
                   <button @click="closeModal()" type="submit" class="btn btn-primary w-25"

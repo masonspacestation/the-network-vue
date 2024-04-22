@@ -74,9 +74,9 @@ async function destroyPost(postId) {
       </p>
     </div>
     <!-- TODO bring this image part back in -->
-    <!-- <div v-if="post.imgUrl" class="row">
-        <img class="post-img" :src="post.imgUrl" alt="">
-      </div> -->
+    <div v-if="post.imgUrl" class="row">
+      <img class="post-img" :src="post.imgUrl" alt="">
+    </div>
     <div class="row justify-content-end">
 
 

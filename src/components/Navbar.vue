@@ -19,21 +19,18 @@ function toggleTheme() {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3">
-    <div class="row justify-content-between">
+  <nav class="navbar-expand-sm navbar-dark bg-dark px-3">
+    <div class="row justify-content-between align-content-center">
 
       <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-        <div class="">
-          <i class="mdi mdi-home"></i>
-          <!-- <img src="src/assets/img/cw-logo.png" alt=""> -->
-        </div>
+
+        <i class="mdi mdi-home"></i>
+        <!-- <img src="src/assets/img/cw-logo.png" alt=""> -->
+
       </router-link>
 
       <SearchBar />
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+
     </div>
     <!-- <div class="collapse navbar-collapse" id="navbarText"> -->
     <!-- <ul class="navbar-nav me-auto">

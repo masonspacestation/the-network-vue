@@ -8,5 +8,32 @@ export class Account {
     this.coverImg = data.coverImg
     this.bio = data.bio
     this.linkedin = data.linkedin
+    this.github = data.github
+    this.resume = data.resume
+    this.class = data.class
+    this.graduated = data.graduated
+
+
+  }
+
+
+  get gradStatus() {
+
+    if (this.graduated == false) {
+      return `<i class="mdi mdi-account-school"></i>`
+    } else {
+      return ``
+    }
+
+  }
+
+
+}
+
+function gradStatus(status) {
+  if (this.graduated == false) {
+    return '<i class="mdi mdi-account-school"></i>'
+  } else {
+    return
   }
 }

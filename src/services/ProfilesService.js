@@ -7,8 +7,9 @@ import { api } from "./AxiosService.js"
 
 
 class ProfilesService {
-  clearSearch() {
-    throw new Error("Method not implemented.");
+  async clearSearch() {
+    AppState.searchTerm = ''
+    await this.getProfiles()
   }
 
   async getProfiles(searchQuery) {
@@ -24,7 +25,7 @@ class ProfilesService {
 
   async searchProfiles(searchQuery) {
     const response = await api.get(`/api/profiles?query=${searchQuery}`)
-    console.log('found profile', searchQuery);
+    console.log('found profile', response.data);
     const profiles = response.data.map(profile => new Profile(profile))
     AppState.searchTerm = searchQuery
     AppState.profiles = profiles

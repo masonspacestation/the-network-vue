@@ -83,7 +83,17 @@ async function getProfile(user) {
       </div>
     </span>
     <div v-if="account" class="mt-3">
+      <p v-if="account.gradStatus == false"><i class="mdi mdi-account-school"></i> {{ account.class }}</p>
       <h5>{{ account.name }}</h5>
+
+      <div class="row my-2 px-4 justify-content-center align-items-center">
+        <a v-if="account.linkedin" :href="account.linkedin" class="d-inline w-auto mx-1" target="_blank"><i
+            class="mdi mdi-linkedin fs-4"></i></a>
+        <a v-if="account.github" :href="account.github" class="d-inline w-auto mx-1" target="_blank"><i
+            class="mdi mdi-github fs-4"></i></a>
+        <a v-if="account.resume" :href="account.resume" class="d-inline w-auto mx-1" target="_blank"><i
+            class="mdi mdi-account fs-4"></i></a>
+      </div>
     </div>
   </section>
 </template>

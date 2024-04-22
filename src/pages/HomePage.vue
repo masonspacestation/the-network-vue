@@ -74,16 +74,19 @@ async function getProfiles() {
     </div>
   </div>
 
-  <div v-if="AppState.searchTerm">
-    <div v-for="profile in profiles" :key="profile.id" class="col-12">
-      <ProfilePreviewCard :profile="profile" />
+  <div class="row mb-3">
+    <div v-if="AppState.searchTerm">
+      <div v-for="profile in profiles" :key="profile.id" class="col-12">
+        <ProfilePreviewCard :profile="profile" />
+      </div>
     </div>
-  </div>
 
-  <div v-else>
-    <div v-for="post in posts" :key="post.id" class="col-12">
-      <PostCard :post="post" />
+    <div v-else>
+      <div v-for="post in posts" :key="post.id" class="col-12">
+        <PostCard :post="post" />
+      </div>
     </div>
+
   </div>
 
 
