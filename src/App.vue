@@ -30,14 +30,14 @@ async function changePage(pageNumber) {
 
   <main>
     <div class="container-fluid">
-      <section class="row p-0 mt-3">
-        <div class="col-3 m-0 p-0">
-          <div class="">
+      <section class="row p-0">
+        <div class="col-2 m-0 p-0">
+          <div class="sticky-top">
             <Login />
           </div>
         </div>
-        <div class="col-9 pe-0">
-          <header>
+        <div class="col-10 p-0">
+          <header class="sticky-top">
             <Navbar />
           </header>
           <div class="row p-3">
@@ -87,7 +87,7 @@ async function changePage(pageNumber) {
 
 
 
-              <div class="row">
+              <div class="row p-4">
                 <router-view />
                 <!-- <HomePage /> -->
               </div>

@@ -43,7 +43,7 @@ async function getProfile(user) {
 </script>
 
 <template>
-  <section class="login-sidebar">
+  <section class="login-sidebar bg-info p-5">
     <span class="navbar-text">
       <button class="btn selectable text-success lighten-30 text-uppercase my-lg-0" @click="login"
         v-if="!user?.isAuthenticated">
@@ -51,10 +51,11 @@ async function getProfile(user) {
       </button>
       <div v-else>
 
+
         <div class="dropdown my-2 my-lg-0">
           <div type="button" class="border-0 selectable no-select" data-bs-toggle="dropdown" aria-expanded="false">
             <div v-if="account?.picture || user?.picture">
-              <img :src="account?.picture || user?.picture" alt="account photo" class="rounded" />
+              <img :src="account?.picture || user?.picture" alt="account photo" class="account-photo" />
             </div>
           </div>
           <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
@@ -95,17 +96,25 @@ async function getProfile(user) {
             class="mdi mdi-account fs-4"></i></a>
       </div>
     </div>
+    <div class="row h-auto align-items-end sticky-bottom justify-content-start"></div>
+    <p class="text-secondary opacity-50 fs-6 fw-medium mb-4"><i class="mdi mdi-cog"></i> User
+      Settings</p>
   </section>
 </template>
 
 <style lang="scss" scoped>
 .login-sidebar {
   img {
-    height: 15dvh;
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50em;
+    border: 3px solid rgb(68, 122, 193);
   }
 
   height: 100dvh;
-  background-color: #bfeef1;
-  padding: 5%;
+  // background-color: #bfeef1;
+  // padding: 5%;
 }
 </style>
