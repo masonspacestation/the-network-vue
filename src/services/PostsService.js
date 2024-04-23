@@ -7,6 +7,14 @@ import { api } from "./AxiosService.js"
 
 
 class PostsService {
+  async changeSearchPage(pageNumber) {
+    const response = await api.get(`api/posts?page=${pageNumber}&query=${AppState.searchTerm}`) //`search/movie?page=${pageNumber}&query=${AppState.searchTerm}`
+    // console.log('pagenumber:', pageNumber, response.data.page);
+    const posts = response.data.posts.map(post => new Post(post))
+    AppState.posts = posts
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.totalPages
+  }
   getProfiles() {
     throw new Error("Method not implemented.");
   }
@@ -35,8 +43,8 @@ class PostsService {
     // likedPost.likeIds += account.id
 
   }
-  async changePage(pageNumber) {
-    const response = await api.get(`api/posts?page=${pageNumber}`)
+  async changePage(url) {
+    const response = await api.get(url)
     // console.log('pagenumber:', pageNumber, response.data.page);
     const posts = response.data.posts.map(post => new Post(post))
     AppState.posts = posts

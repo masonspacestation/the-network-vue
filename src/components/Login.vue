@@ -84,7 +84,7 @@ async function getProfile(user) {
       </div>
     </span>
     <div v-if="account" class="mt-3">
-      <p v-if="account.gradStatus == false"><i class="mdi mdi-account-school"></i> {{ account.class }}</p>
+      <p><i v-if="account.graduated == true" class="mdi mdi-account-school"></i> {{ account.class }}</p>
       <h5>{{ account.name }}</h5>
 
       <div class="row my-2 px-4 justify-content-center align-items-center">
@@ -96,9 +96,11 @@ async function getProfile(user) {
             class="mdi mdi-account fs-4"></i></a>
       </div>
     </div>
-    <div class="row h-auto align-items-end sticky-bottom justify-content-start"></div>
-    <p class="text-secondary opacity-50 fs-6 fw-medium mb-4"><i class="mdi mdi-cog"></i> User
-      Settings</p>
+    <div class="row align-items-end">
+
+      <p class="text-secondary opacity-50 fs-6 fw-medium align-self-end mb-4"><i class="mdi mdi-cog"></i> User
+        Settings</p>
+    </div>
   </section>
 </template>
 

@@ -64,7 +64,7 @@ async function getProfilePosts() {
           </div>
           <div class="col-4">
             <h4>{{ profile.name }}</h4>
-            <p v-if="profile.gradStatus == false"><i class="mdi mdi-account-school"></i> {{ profile.class }}</p>
+            <p><i v-if="profile.graduated == true" class="mdi mdi-account-school"></i> {{ profile.class }}</p>
           </div>
           <div class="col-6">
             <div class="row px-4 justify-content-end align-items-center">
@@ -97,7 +97,7 @@ async function getProfilePosts() {
           </div>
         </div>
 
-        <div v-if="profile.id == account.id" class="row">
+        <div v-if="profile?.id == account?.id" class="row">
           <div class="col-12 text-end">
             <button class="btn btn-outline-secondary opacity-50 w-auto me-3 mb-3" data-bs-toggle="modal"
               data-bs-target="#staticBackdrop" data-bs-dismiss="modal"><i class="mdi mdi-pencil"></i></button>
